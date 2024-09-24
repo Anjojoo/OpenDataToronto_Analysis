@@ -1,8 +1,8 @@
 #### Preamble ####
-# Purpose: Simulates the 
+# Purpose: Simulates the occupancy and capacity data
 # Author: Angel Xu
 # Date: 21 September 2024
-# Contact: anjojoo.xu@mail.utoronto.ca
+# Contact: victoria.zheng@mail.utoronto.ca
 # Pre-requisites: None
 # Any other information needed? None
 
@@ -31,7 +31,7 @@ capacity_type <- c("Room Based Capacity", "Bed Based Capacity")
 # Simulate data 
 simulated_data <- tibble(
   id = 1:number_of_datas, 
-  OCCUPANCY_DATE = as.Date(runif(n = number_of_dates, min = as.numeric(start_date), 
+  OCCUPANCY_DATE = as.Date(runif(n = number_of_datas, min = as.numeric(start_date), 
                                         max = as.numeric(end_date)),
   origin = "1970-01-01"),
   OVERNIGHT_SERVICE_TYPE = sample(overnight_service_type, number_of_datas, replace = TRUE), 
@@ -50,5 +50,5 @@ simulated_data <- tibble(
 )
 
 #### Write_csv ####
-write_csv(poll_data, file = "data/raw_data/simulated_data.csv")
+write_csv(simulated_data, file = "data/raw_data/simulated_data.csv")
 
