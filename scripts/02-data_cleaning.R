@@ -9,23 +9,29 @@
 #### Workspace setup ####
 library(tidyverse)
 library(janitor)
+library(lubridate)
+library(dplyr)
 
 #### Clean data ####
 # Read the raw dataset
 raw_data <- read_csv("data/raw_data/raw_data.csv")
 
-# Clean and select wanted columns
+# Convert occupancy_date into date format
+raw_data$OCCUPANCY_DATE <- as.Date(raw_data$OCCUPANCY_DATE, format = "%y-%m-%d")
+
+# Clean, mutate and select wanted columns
 cleaned_data <-
   raw_data |>
-  janitor::clean_names() |>
-  select(overnight_service_type, 
+  janitor::clean_names() |> 
+  mutate(year = year(occupancy_date)) |> 
+  select(year, 
+         occupancy_date, 
+         overnight_service_type, 
          service_user_count, 
          capacity_type, 
          capacity_actual_bed,
-         occupied_beds,
          occupancy_rate_beds,
          capacity_actual_room,
-         occupied_rooms,
          occupancy_rate_rooms)
 
 # View the cleaned dataset (optional)

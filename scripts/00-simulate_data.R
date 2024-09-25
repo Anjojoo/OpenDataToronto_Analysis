@@ -32,21 +32,19 @@ capacity_type <- c("Room Based Capacity", "Bed Based Capacity")
 simulated_data <- tibble(
   id = 1:number_of_datas, 
   OCCUPANCY_DATE = as.Date(runif(n = number_of_datas, min = as.numeric(start_date), 
-                                        max = as.numeric(end_date)),
-  origin = "1970-01-01"),
+                                        max = as.numeric(end_date)), 
+  origin = "1970-01-01"), 
   OVERNIGHT_SERVICE_TYPE = sample(overnight_service_type, number_of_datas, replace = TRUE), 
-  SERVICE_USER_COUNT = sample(1:660, number_of_datas, replace = TRUE), 
+  SERVICE_USER_COUNT = rpois(n = number_of_datas, lambda = 330), 
   CAPACITY_TYPE = sample(capacity_type, number_of_datas, replace = TRUE), 
   CAPACITY_ACTUAL_BED = ifelse(CAPACITY_TYPE != "Bed Based Capacity", 0, 
-                               sample(1:278, number_of_datas, replace = TRUE)), 
-  OCCUPIED_BEDS = ifelse(CAPACITY_TYPE != "Bed Based Capacity", 0, 
-                         sample(1:CAPACITY_ACTUAL_BED, number_of_datas, replace = TRUE)), 
-  OCCUPANCY_RATE_BEDS = OCCUPIED_BEDS / CAPACITY_ACTUAL_BED * 100, 
+                               rpois(n = number_of_datas, lambda = 150)), 
+  OCCUPANCY_RATE_BEDS = ifelse(CAPACITY_TYPE != "Bed Based Capacity", 0, 
+                               sample(0:100, number_of_datas, replace = TRUE)), 
   CAPACITY_ACTUAL_ROOM = ifelse(CAPACITY_TYPE == "Bed Based Capacity", 0, 
-                                sample(1:329, number_of_datas, replace = TRUE)), 
-  OCCUPIED_ROOMS = ifelse(CAPACITY_TYPE == "Bed Based Capacity", 0, 
-                          sample(1:CAPACITY_ACTUAL_ROOM, number_of_datas, replace = TRUE)), 
-  OCCUPANCY_RATE_ROOMS = OCCUPIED_ROOMS / CAPACITY_ACTUAL_ROOM * 100
+                                rpois(n = number_of_datas, lambda = 170)), 
+  OCCUPANCY_RATE_ROOMS = ifelse(CAPACITY_TYPE != "Bed Based Capacity", 0, 
+                                sample(0:100, number_of_datas, replace = TRUE))
 )
 
 #### Write_csv ####
