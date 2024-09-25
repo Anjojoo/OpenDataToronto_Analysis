@@ -22,6 +22,11 @@ bibliography: references.bib
 
 library(tidyverse)
 library(opendatatoronto)
+library(here)
+
+
+# Load the analysis data
+data <- read_csv(here::here("data", "analysis_data", "analysis_data.csv"))
 ```
 
 
@@ -46,6 +51,10 @@ Some of our data is of penguins (@fig-bills), from @palmerpenguins.
 #| label: fig-bills
 #| fig-cap: Bills of penguins
 #| echo: false
+#| warning: false
+#| message: false
+
+
 
 
 ```
