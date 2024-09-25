@@ -11,7 +11,6 @@
 library(tidyverse)
 
 #### Test data ####
-<<<<<<< HEAD
 data <- read_csv("data/analysis_data/analysis_data.csv")
 
 # Test for negative numbers in numerical columns
@@ -25,15 +24,5 @@ all(any_negative_bed, any_negative_room, any_negative_rate_bed, any_negative_rat
 # Test for NA in categorial columns
 all(!is.na(data$overnight_service_type))
 all(!is.na(data$capacity_type))
-=======
-data <- read_csv("data/raw_data/raw_data.csv")
-
-# Test for negative numbers in numerical columns
-data$SERVICE_USER_COUNT |> min() >= 0
-
-# Test for NA in categorial columns
-all(!is.na(data$OVERNIGHT_SERVICE_TYPE))
-all(!is.na(data$CAPACITY_TYPE))
->>>>>>> origin/main
 
 
