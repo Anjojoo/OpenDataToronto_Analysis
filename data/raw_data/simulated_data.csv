@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 id,OCCUPANCY_DATE,OVERNIGHT_SERVICE_TYPE,SERVICE_USER_COUNT,CAPACITY_TYPE,CAPACITY_ACTUAL_BED,OCCUPANCY_RATE_BEDS,CAPACITY_ACTUAL_ROOM,OCCUPANCY_RATE_ROOMS
 1,2023-02-05,Shelter,359,Room Based Capacity,0,0,169,0
 2,2022-10-22,Motel/Hotel Shelter,359,Bed Based Capacity,145,90,0,49
@@ -99,3 +100,106 @@ id,OCCUPANCY_DATE,OVERNIGHT_SERVICE_TYPE,SERVICE_USER_COUNT,CAPACITY_TYPE,CAPACI
 98,2022-01-08,Isolation/Recovery Site,340,Room Based Capacity,0,0,166,0
 99,2022-01-18,Alternative Space Protocol,328,Room Based Capacity,0,0,171,0
 100,2022-07-04,Warming Centre,376,Bed Based Capacity,150,74,0,59
+=======
+id,OCCUPANCY_DATE,OVERNIGHT_SERVICE_TYPE,SERVICE_USER_COUNT,CAPACITY_TYPE,CAPACITY_ACTUAL_BED,OCCUPIED_BEDS,OCCUPANCY_RATE_BEDS,CAPACITY_ACTUAL_ROOM,OCCUPIED_ROOMS,OCCUPANCY_RATE_ROOMS
+1,2023-02-05,Shelter,654,Room Based Capacity,0,0,NA,47,28,59.57446808510638
+2,2022-10-22,Motel/Hotel Shelter,562,Room Based Capacity,0,0,NA,96,16,16.666666666666664
+3,2023-11-16,Shelter,210,Room Based Capacity,0,0,NA,19,12,63.1578947368421
+4,2022-12-25,24-Hour Women's Drop-in,369,Bed Based Capacity,49,0,0,0,0,NA
+5,2021-04-28,Shelter,416,Bed Based Capacity,145,1,0.6896551724137931,0,0,NA
+6,2022-07-18,24-Hour Respite Site,389,Bed Based Capacity,110,1,0.9090909090909091,0,0,NA
+7,2024-07-31,Isolation/Recovery Site,583,Bed Based Capacity,54,0,0,0,0,NA
+8,2022-03-19,24-Hour Respite Site,560,Room Based Capacity,0,0,NA,235,21,8.936170212765958
+9,2024-04-09,24-Hour Respite Site,336,Bed Based Capacity,204,1,0.49019607843137253,0,0,NA
+10,2022-07-14,Isolation/Recovery Site,269,Bed Based Capacity,247,1,0.4048582995951417,0,0,NA
+11,2024-03-31,Isolation/Recovery Site,541,Bed Based Capacity,241,1,0.4149377593360996,0,0,NA
+12,2023-06-12,Warming Centre,123,Room Based Capacity,0,0,NA,239,9,3.765690376569038
+13,2023-12-28,Motel/Hotel Shelter,46,Bed Based Capacity,37,0,0,0,0,NA
+14,2022-08-08,24-Hour Women's Drop-in,460,Room Based Capacity,0,0,NA,152,24,15.789473684210526
+15,2023-03-15,24-Hour Women's Drop-in,7,Room Based Capacity,0,0,NA,261,45,17.24137931034483
+16,2024-04-30,Alternative Space Protocol,592,Room Based Capacity,0,0,NA,169,35,20.710059171597635
+17,2023-08-07,Shelter,540,Room Based Capacity,0,0,NA,25,11,44
+18,2022-05-03,Shelter,442,Room Based Capacity,0,0,NA,114,11,9.649122807017543
+19,2024-07-24,Alternative Space Protocol,256,Room Based Capacity,0,0,NA,121,47,38.84297520661157
+20,2024-02-08,Alternative Space Protocol,359,Room Based Capacity,0,0,NA,233,36,15.450643776824036
+21,2024-05-24,24-Hour Women's Drop-in,579,Bed Based Capacity,246,0,0,0,0,NA
+22,2023-04-02,Isolation/Recovery Site,445,Bed Based Capacity,270,0,0,0,0,NA
+23,2023-01-01,24-Hour Women's Drop-in,36,Room Based Capacity,0,0,NA,88,26,29.545454545454547
+24,2023-04-10,Top Bunk Contingency Space,537,Room Based Capacity,0,0,NA,193,15,7.772020725388601
+25,2021-12-22,24-Hour Respite Site,501,Bed Based Capacity,123,1,0.8130081300813009,0,0,NA
+26,2022-04-27,Warming Centre,562,Bed Based Capacity,191,0,0,0,0,NA
+27,2021-05-17,Warming Centre,398,Bed Based Capacity,259,1,0.3861003861003861,0,0,NA
+28,2022-06-21,Isolation/Recovery Site,34,Bed Based Capacity,142,1,0.7042253521126761,0,0,NA
+29,2022-07-03,Shelter,23,Bed Based Capacity,245,0,0,0,0,NA
+30,2022-08-19,Shelter,135,Bed Based Capacity,33,1,3.0303030303030303,0,0,NA
+31,2022-06-16,Isolation/Recovery Site,303,Bed Based Capacity,8,1,12.5,0,0,NA
+32,2024-04-20,24-Hour Women's Drop-in,257,Bed Based Capacity,165,1,0.6060606060606061,0,0,NA
+33,2021-03-19,24-Hour Women's Drop-in,293,Room Based Capacity,0,0,NA,133,47,35.338345864661655
+34,2024-01-19,Shelter,476,Bed Based Capacity,107,1,0.9345794392523363,0,0,NA
+35,2024-07-09,Isolation/Recovery Site,41,Bed Based Capacity,64,0,0,0,0,NA
+36,2021-12-26,24-Hour Women's Drop-in,505,Room Based Capacity,0,0,NA,294,34,11.564625850340136
+37,2021-03-04,Shelter,79,Bed Based Capacity,188,1,0.5319148936170213,0,0,NA
+38,2024-02-18,Top Bunk Contingency Space,222,Bed Based Capacity,236,1,0.423728813559322,0,0,NA
+39,2023-07-30,24-Hour Women's Drop-in,415,Bed Based Capacity,65,0,0,0,0,NA
+40,2022-06-04,Warming Centre,375,Room Based Capacity,0,0,NA,207,5,2.4154589371980677
+41,2023-11-03,24-Hour Women's Drop-in,199,Room Based Capacity,0,0,NA,41,24,58.536585365853654
+42,2023-05-04,Motel/Hotel Shelter,368,Room Based Capacity,0,0,NA,242,29,11.983471074380166
+43,2022-07-12,Shelter,263,Room Based Capacity,0,0,NA,69,15,21.73913043478261
+44,2022-05-18,Motel/Hotel Shelter,567,Room Based Capacity,0,0,NA,256,24,9.375
+45,2021-05-06,Top Bunk Contingency Space,269,Bed Based Capacity,155,0,0,0,0,NA
+46,2022-05-18,24-Hour Women's Drop-in,556,Room Based Capacity,0,0,NA,160,45,28.125
+47,2021-08-07,Warming Centre,627,Room Based Capacity,0,0,NA,182,23,12.637362637362637
+48,2022-10-07,Top Bunk Contingency Space,445,Bed Based Capacity,169,0,0,0,0,NA
+49,2022-04-28,Isolation/Recovery Site,483,Room Based Capacity,0,0,NA,325,22,6.769230769230769
+50,2023-11-27,24-Hour Respite Site,53,Room Based Capacity,0,0,NA,263,23,8.745247148288973
+51,2022-07-26,24-Hour Respite Site,586,Room Based Capacity,0,0,NA,9,21,233.33333333333334
+52,2022-12-09,Motel/Hotel Shelter,177,Room Based Capacity,0,0,NA,80,25,31.25
+53,2022-12-15,24-Hour Women's Drop-in,518,Bed Based Capacity,176,0,0,0,0,NA
+54,2021-08-03,24-Hour Women's Drop-in,404,Bed Based Capacity,176,1,0.5681818181818182,0,0,NA
+55,2023-02-01,24-Hour Respite Site,207,Bed Based Capacity,232,0,0,0,0,NA
+56,2022-05-23,Alternative Space Protocol,374,Bed Based Capacity,153,0,0,0,0,NA
+57,2024-03-01,24-Hour Women's Drop-in,610,Room Based Capacity,0,0,NA,283,45,15.901060070671377
+58,2022-03-28,Shelter,475,Room Based Capacity,0,0,NA,22,46,209.0909090909091
+59,2024-08-02,Top Bunk Contingency Space,310,Bed Based Capacity,227,0,0,0,0,NA
+60,2024-06-06,24-Hour Women's Drop-in,593,Room Based Capacity,0,0,NA,48,28,58.333333333333336
+61,2024-05-08,24-Hour Women's Drop-in,366,Bed Based Capacity,134,0,0,0,0,NA
+62,2021-02-28,Isolation/Recovery Site,19,Room Based Capacity,0,0,NA,46,34,73.91304347826086
+63,2022-09-28,Alternative Space Protocol,445,Room Based Capacity,0,0,NA,256,9,3.515625
+64,2023-07-19,24-Hour Women's Drop-in,511,Bed Based Capacity,278,0,0,0,0,NA
+65,2021-07-01,Warming Centre,525,Room Based Capacity,0,0,NA,98,28,28.57142857142857
+66,2023-09-20,Warming Centre,564,Bed Based Capacity,210,0,0,0,0,NA
+67,2022-08-10,Motel/Hotel Shelter,138,Bed Based Capacity,143,1,0.6993006993006993,0,0,NA
+68,2021-01-15,Motel/Hotel Shelter,469,Bed Based Capacity,177,1,0.5649717514124294,0,0,NA
+69,2024-03-30,24-Hour Women's Drop-in,243,Room Based Capacity,0,0,NA,14,1,7.142857142857142
+70,2023-03-13,Isolation/Recovery Site,509,Bed Based Capacity,162,1,0.6172839506172839,0,0,NA
+71,2024-08-09,Isolation/Recovery Site,428,Bed Based Capacity,61,1,1.639344262295082,0,0,NA
+72,2023-02-13,Isolation/Recovery Site,174,Room Based Capacity,0,0,NA,39,21,53.84615384615385
+73,2024-07-05,Warming Centre,330,Bed Based Capacity,211,1,0.47393364928909953,0,0,NA
+74,2022-03-16,24-Hour Respite Site,319,Bed Based Capacity,73,1,1.36986301369863,0,0,NA
+75,2022-04-26,Shelter,441,Room Based Capacity,0,0,NA,280,41,14.642857142857144
+76,2022-09-30,Shelter,23,Room Based Capacity,0,0,NA,146,27,18.493150684931507
+77,2022-11-18,Motel/Hotel Shelter,551,Bed Based Capacity,177,0,0,0,0,NA
+78,2021-01-16,Warming Centre,563,Room Based Capacity,0,0,NA,33,29,87.87878787878788
+79,2024-08-30,Motel/Hotel Shelter,430,Room Based Capacity,0,0,NA,160,26,16.25
+80,2022-05-30,Isolation/Recovery Site,654,Room Based Capacity,0,0,NA,222,34,15.315315315315313
+81,2023-06-01,24-Hour Respite Site,115,Bed Based Capacity,57,0,0,0,0,NA
+82,2021-06-06,Warming Centre,633,Room Based Capacity,0,0,NA,135,11,8.148148148148149
+83,2022-11-27,Shelter,615,Bed Based Capacity,56,1,1.7857142857142856,0,0,NA
+84,2022-12-14,Shelter,387,Room Based Capacity,0,0,NA,62,47,75.80645161290323
+85,2021-08-31,Isolation/Recovery Site,139,Bed Based Capacity,215,1,0.46511627906976744,0,0,NA
+86,2021-11-06,24-Hour Women's Drop-in,610,Bed Based Capacity,140,1,0.7142857142857143,0,0,NA
+87,2022-06-10,Shelter,394,Bed Based Capacity,10,0,0,0,0,NA
+88,2023-10-12,24-Hour Women's Drop-in,93,Bed Based Capacity,21,1,4.761904761904762,0,0,NA
+89,2023-05-30,24-Hour Women's Drop-in,299,Room Based Capacity,0,0,NA,256,33,12.890625
+90,2021-12-04,Alternative Space Protocol,533,Bed Based Capacity,77,0,0,0,0,NA
+91,2021-08-02,Motel/Hotel Shelter,396,Room Based Capacity,0,0,NA,252,30,11.904761904761903
+92,2022-06-15,Warming Centre,96,Room Based Capacity,0,0,NA,6,33,550
+93,2024-08-27,24-Hour Women's Drop-in,315,Bed Based Capacity,152,0,0,0,0,NA
+94,2022-12-01,Isolation/Recovery Site,232,Room Based Capacity,0,0,NA,117,27,23.076923076923077
+95,2021-06-25,24-Hour Women's Drop-in,460,Bed Based Capacity,147,1,0.6802721088435374,0,0,NA
+96,2022-05-10,Warming Centre,501,Room Based Capacity,0,0,NA,205,33,16.097560975609756
+97,2023-06-13,24-Hour Respite Site,474,Room Based Capacity,0,0,NA,212,14,6.60377358490566
+98,2022-01-08,Isolation/Recovery Site,62,Bed Based Capacity,54,0,0,0,0,NA
+99,2022-01-18,Alternative Space Protocol,554,Bed Based Capacity,104,0,0,0,0,NA
+100,2022-07-04,Warming Centre,174,Bed Based Capacity,169,1,0.591715976331361,0,0,NA
+>>>>>>> origin/main
