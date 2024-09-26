@@ -32,7 +32,6 @@ data <- read_csv(here::here("data", "analysis_data", "analysis_data.csv"))
 
 
 # Introduction
-
 The growing issue of homelessness in urban centers like Toronto has created an urgent need to analyze shelter occupancy and capacity, as shelters are critical for providing temporary housing to those in need. To effectively manage and improve these services, understanding usage trends is essential. This paper focuses on analyzing the "Daily Shelter & Overnight Service Occupancy & Capacity" dataset from OpenDataToronto(@citeopendatatoronto), covering data from 2021 to 2024. This dataset includes daily records of shelter occupancy, capacity, and types of overnight services provided, offering a comprehensive view of the situation in Toronto. The motivation behind this study is to address the fluctuating demand for shelter services and inform strategies for more efficient allocation of resources to support vulnerable populations.
 
 The study involves a detailed analysis of shelter usage trends, employing R programming(@citeR) and @alexander2023telling mainly. Besides, associated packages of R are applied to clean, manipulate, and visualize the data. Tools like tidyverse(@citetidyverse), ggplot2(@citeggplot2), dplyr(@citedplyr), and others facilitated data processing and visualization, enabling a deeper examination of occupancy rates and capacity changes over the years. The findings reveal an overall upward trend in shelter occupancy rates, suggesting increased demand for these services. A significant decline in actual capacity was observed in 2024, which underscores a mismatch between available resources and the needs of shelter users. Summary statistics were computed to highlight trends in service user counts and occupancy rates, providing insights into how shelter usage has evolved.
@@ -59,7 +58,7 @@ Prior to analysis, data cleaning is essential to remove unnecessary columns and 
 Once these steps are complete, relevant variables are selected from the raw dataset to simplify and clarify the analysis. The chosen variables include year, occupancy date, overnight service type, service user count, capacity type, actual capacity and occupancy rates. NAs exist in actual capacity and occupancy rates, but there are no needs to eliminate them since due to different capacity type of bed and room, NA appears in the opposite actual capacity and occupancy rates.
 
 ## Summary Statistics of Variables
-To gain a better overview of the dataset, a table including key variables is provided. Table 1(@tbl-key-variables) presents year, overnight service type, service user count and occupancy rates.
+To gain a better overview of the dataset, a table including key variables is provided. @tbl-key-variables presents year, overnight service type, service user count and occupancy rates.
 Year represents the year where the observation is collected. Overnight service type represents what service has been provided. Service user count records number of users taking service during that night. Occupancy rates record the proportion of actual capacity that is occupied.
 
 ```{r}
@@ -82,7 +81,7 @@ kable(sample, col.names = c("year", "overnight service type", "service user coun
       caption = "Table 1: Sample of the key variables in Occupancy & Capacity Data")
 ```
 
-Beside the sample table of ley variables, a summary statistics table of key variables can be provided to clarify some information of the data. Table 2(@tbl-summary-stats) presents the mean and standard deviation of service user counts and two occupancy rates. Service user counts has a mean at 60.58 and a standard deviation at about 76.09% which is pretty high and shows the great difference in user picks between different services. Occupancy rate of beds has a high mean at 96.24% and a standard deviation at 9.28%. This illustrates that the occupency rate of beds are approximately near 100 and are full occupied for most of the situations. Occupancy rate of rooms also has a high mean at 97.03% which is slightly higher than occupancy rate of beds and a standard deviation of 10.82%, suggesting that capacity of shelter rooms reaches nearly full and fuller than shelter rooms. However, the actual capacity of beds and rooms aren't included in this table; thus, the usage of shelter beds and rooms need to be considered more thoroughly by observing their actual capacity numbers. 
+Beside the sample table of ley variables, a summary statistics table of key variables can be provided to clarify some information of the data. @tbl-summary-stats presents the mean and standard deviation of service user counts and two occupancy rates. Service user counts has a mean at 60.58 and a standard deviation at about 76.09% which is pretty high and shows the great difference in user picks between different services. Occupancy rate of beds has a high mean at 96.24% and a standard deviation at 9.28%. This illustrates that the occupency rate of beds are approximately near 100 and are full occupied for most of the situations. Occupancy rate of rooms also has a high mean at 97.03% which is slightly higher than occupancy rate of beds and a standard deviation of 10.82%, suggesting that capacity of shelter rooms reaches nearly full and fuller than shelter rooms. However, the actual capacity of beds and rooms aren't included in this table; thus, the usage of shelter beds and rooms need to be considered more thoroughly by observing their actual capacity numbers. 
 
 ```{r}
 #| label: tbl-summary-stats
@@ -112,7 +111,7 @@ kable(summary_stats, col.names = c("Variable", "Mean", "Standard Deviation"),
       caption = "Table 2: Mean and Standard Deviation of Key Variables")
 ```
 
-For deeper explore in service user count and capacity in different years, the sum of these variables from 2021 to 2024 needs to be examined. Occupancy rate of beds and rooms cannot reflect the total difference usage of all shelters, as well as the mean of service user counts. They can only represent the common usage situation of every shelter in total. While Table 3(@tbl-total) provides a table of total service user counts and actual capacity for both beds and rooms. Within these data, a more complete result can be figured out and will be used for data visualization later.
+For deeper explore in service user count and capacity in different years, the sum of these variables from 2021 to 2024 needs to be examined. Occupancy rate of beds and rooms cannot reflect the total difference usage of all shelters, as well as the mean of service user counts. They can only represent the common usage situation of every shelter in total. While @tbl-total provides a table of total service user counts and actual capacity for both beds and rooms. Within these data, a more complete result can be figured out and will be used for data visualization later.
 
 ```{r}
 #| label: tbl-total
@@ -156,7 +155,7 @@ kable(summary_stats, col.names = c("Year", "Total Service User Counts",
 ```
 
 # Result{#sec-results}
-Data visualizations can be used to present results more intuitively, and the data used to visualize  is from @citeopendatatoronto. 
+Data visualizations can be used to present results more intuitively, and the data used to visualize  is from opendatatoronto@citeopendatatoronto. 
 
 ## Overnight Service Usage
 The graph below displays the user counts for various overnight service types, offering a clear comparison. This visualization helps identify the most frequently used service across all types.
@@ -197,7 +196,7 @@ data |> ggplot(aes(x = year, y = service_user_count)) +
   scale_y_continuous(labels = scales::comma)
 ```
 
-Figure 2(@fig-year-count) shows the number of service users across different years from 2021 to 2024, as also detailed in Table 3(@tbl-total). The graph highlights a clear upward trend from 2021 to 2023, followed by a decline in 2024. However, the total number of service users in 2024 remains higher than in 2021.
+@fig-year-count shows the number of service users across different years from 2021 to 2024, as also detailed in @tbl-total. The graph highlights a clear upward trend from 2021 to 2023 and reached to a peak of 3288505 in 2023, followed by a decline back to 2633817 in 2024. However, the total number of service users in 2024 remains higher than in 2021.
 
 ## Average Occupancy Rate Change
 
@@ -231,7 +230,7 @@ ggplot(df_long, aes(x = factor(year), y = average, fill = type)) +
 
 ```
 
-Figure 3(@fig-rate-mean) illustrates the trend in the average occupancy rates of beds and rooms from 2021 to 2024. Both categories exhibit an upward trend, although the increase in the occupancy rates of beds and rooms from year to year is quite modest. Overall, the average occupancy rate for rooms consistently surpasses that of beds each year. In 2024, the average room occupancy rate reached 99.5%, indicating nearly full occupancy of shelter rooms, while the average bed occupancy rate achieved 98.3%, slightly lower than the average room occupancy rate.
+@fig-rate-mean illustrates the trend in the average occupancy rates of beds and rooms from 2021 to 2024. Both categories exhibit an upward trend, although the increase in the occupancy rates of beds and rooms from year to year is quite modest. Overall, the average occupancy rate for rooms consistently surpasses that of beds each year. In 2024, the average room occupancy rate reached 99.5%, indicating nearly full occupancy of shelter rooms, while the average bed occupancy rate achieved 98.3%, slightly lower than the average room occupancy rate.
 
 ## Total Actual Capacity Change
 
@@ -262,12 +261,27 @@ ggplot(df_long, aes(x = factor(year), y = total, fill = type)) +
 
 ```
 
-Figure 4(@fig-total-cap) illustrates the total actual capacity of beds and rooms from 2021 to 2024, allowing for a comparison of the capacities across two categories. Notably, as shown in Figure 3(@fig-rate-mean), rooms consistently exhibit a higher occupancy rate than beds over all four years. The plots indicate that the total actual capacity of rooms was only greater than that of beds in 2021 and 2022; however, in 2023 and 2024, the capacity of beds surpassed that of rooms significantly. Additionally, the total actual capacity of beds demonstrated an increasing trend from 2021 to 2023, followed by a decline in 2024. Conversely, the total actual capacity of rooms exhibited an upward trend from 2021 to 2022, after which it began to decrease until reaching its lowest point in 2024.
+@fig-total-cap illustrates the total actual capacity of beds and rooms from 2021 to 2024, allowing for a comparison of the capacities across two categories. Notably, as shown in @fig-rate-mean, rooms consistently exhibit a higher occupancy rate than beds over all four years. The plots indicate that the total actual capacity of rooms was only greater than that of beds in 2021 and 2022; however, in 2023 and 2024, the capacity of beds surpassed that of rooms significantly and raised to 1457984. Additionally, the total actual capacity of beds demonstrated an increasing trend from 2021 to 2023, followed by a decline to 1232028 in 2024. Conversely, the total actual capacity of rooms exhibited an upward trend from 2021 to 2022 which has its highest point at 1211399 of total actual capacity, after which it began to decrease until reaching its lowest point, 777790 in 2024.
 
 # Discussion {#sec-dis}
-## Summary Conclusions
+## Summary Conclusions and Implications
+This paper analyzes trends in shelter occupancy and capacity in Toronto from 2021 to 2024, focusing on the increasing demand for shelter services and changes in actual capacity. Figures above highlight that traditional shelters and motel/hotel shelters are the most commonly used services, suggesting that these facilities are critical in addressing homelessness. 
 
+Furthermore, while the total service user count has generally increased, the average occupancy rates of beds and rooms have reached nearly full capacity, especially in 2024, where room occupancy approached 99.5%. This high occupancy rate underscores the strain on available resources and the urgent need for capacity expansion or better resource distribution. 
 
+Oppose to the upward trend in shelter occupancy rates, total actual capacity met a notable decline in 2024. This suggests that while demand for shelter services is rising, the availability of resources has not kept pace, particularly in the latest year. The analysis of service user counts, occupancy rates, and capacity provides insights into the operational challenges faced by shelters in meeting the needs of the city's homeless population.
+
+## Further Discussion
+Further research should expand the time frame of analysis to understand long-term trends in shelter usage, occupancy and capacity. In addition, it would be beneficial to investigate the experiences and outcomes of shelter users to assess the quality and effectiveness of services provided. Comparative studies all over ther world facing similar homelessness challenges could provide valuable insights into better innovative solutions. Moreover, exploring the causes of capacity fluctuations during 2023 and 2024, such as funding changes or policy shifts, could help develop more sustainable strategies for managing shelter resources effectively.
+
+Finally, developing predictive models to forecast shelter demand could assist policymakers and social service organizations in planning and allocating resources more efficiently as the demand model can help to predict the most appropriate resources that are needed by shelter users. These models can incorporate not only historical data but also external factors like economic conditions, housing market trends, and social policies which can help the analysis become more comprehensive.
+
+## Limitations
+There are still some limitations in this paper. The data used from “Daily Shelter & Overnight Service Occupancy & Capacity” from opendatatoronto(@citeopendatatoronto) spans only four years, which may limit the ability to generalize long-term trends in shelter usage. Within a longer terms of trend, prediction will be more accurate for Toronto's shelter usage situation. In turn, seasonal variations and short-term policy changes can have significant impacts on occupancy and capacity, which might not be fully captured in this analysis.
+
+Additionally, while occupancy rates provide useful insights into shelter usage, they do not necessarily reflect the quality of services provided or the experiences of shelter users. Furthermore, the study relies on recorded data from the Shelter Management Information System(SMIS), which may not record all the actual situation in Toronto service programs .
+
+The consideration of external factors that can affect average occupancy rates are not included in this paper. As the shelter demand can change at specific times, such as during extreme weather conditions or economic downturns. 
 
 
 \newpage

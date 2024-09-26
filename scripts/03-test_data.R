@@ -14,7 +14,7 @@ library(tidyverse)
 simulated_data <- read_csv("data/raw_data/simulated_data.csv")
 
 # Test for negative numbers in numerical columns
-simulated_data$SERVICE_USER_COUNT |> min() >= 0
+simulated_data$SERVICE_USER_COUNT |> min() < 0
 simulated_any_negative_bed <- any(simulated_data$CAPACITY_ACTUAL_BED |> min() < 0, 
                                   na.rm = TRUE)
 simulated_any_negative_room <- any(simulated_data$CAPACITY_ACTUAL_ROOM |> min() < 0, 
@@ -35,7 +35,7 @@ all(is.na(simulated_data$Year))
 data <- read_csv("data/analysis_data/analysis_data.csv")
 
 # Test for negative numbers in numerical columns
-data$service_user_count |> min() >= 0
+data$service_user_count |> min() < 0
 any_negative_bed <- any(data$capacity_actual_bed |> min() < 0, na.rm = TRUE)
 any_negative_room <- any(data$capacity_actual_room |> min() < 0, na.rm = TRUE)
 any_negative_rate_bed <- any(data$occupancy_rate_beds |> min() < 0, na.rm = TRUE)
