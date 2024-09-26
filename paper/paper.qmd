@@ -1,6 +1,5 @@
 ---
-title: "My title"
-subtitle: "My subtitle if needed"
+title: "An Analysis of daily shelter and overnight service usage in Toronto focusing on shelter occupancy and capacity"
 author: 
   - "Angel Xu"
 thanks: "Code and data are available at: https://github.com/Anjojoo/Toronto-Overnight-Servive-Occupancy-Capacity."
@@ -23,6 +22,8 @@ bibliography: references.bib
 library(tidyverse)
 library(opendatatoronto)
 library(here)
+library(ggplot2)
+library(knitr)
 
 
 # Load the analysis data
@@ -37,24 +38,96 @@ From what perspective and how to analyze
 Key results
 Structure introduce
 
-You can and should cross-reference sections and sub-sections. We use @citeR and @rohan.
+You can and should cross-reference sections and sub-sections. We use @citeR and @alexander2023telling.
 
 The remainder of this paper is structured as follows. @sec-data....
 
 
 
 # Data {#sec-data}
+## Data Source and Overview
+This paper analyzes data from the "Daily Shelter & Overnight Service Occupancy & Capacity" dataset available on the OpenDataToronto portal. The dataset contains a daily record of overnight shelters and service programs collected through Toronto’s Shelter Management Information System (SMIS). Data spans from 2021 to 2024, offering current insights, and is updated daily, except for weekends and holidays, with uploads resuming on the next business day.
 
-Some of our data is of penguins (@fig-bills), from @palmerpenguins.
+A similar dataset, "Daily Shelter Occupancy," is also available on OpenDataToronto but  only provides data up to March 10, 2022, and includes fewer variables. In contrast, "Daily Shelter & Overnight Service Occupancy & Capacity" features the most recent data, refreshed on 25 September, 2024. It builds upon and enhances the earlier dataset by incorporating additional key variables, including "overnight service type" and "actual capacity." The "overnight service type" variable categorizes the types of overnight services offered in Toronto's shelters, helping analyze variations in user counts by service type. The "actual capacity" variable represents the true available capacity of shelters, as opposed to the funding-based capacity in the previous dataset, offering a more accurate measure of occupancy rates for further analysis.
+
+## Data Tools
+The data was simulated, extracted, and cleaned by R[@citeR] from the opendatatoronto package[@citeopendatatoronto]. Tidyverse[@citetidyverse], here[@citehere], ggplot2[@citeggplot2], dplyr[@citedplyr], lubridate[@lubridate], janitor[@citejanitor] and knitr[@knitr] are all applied in the analysis.
+
+## Clean Data
+Prior to analysis, data cleaning is essential to remove unnecessary columns and create new ones for further examination. The occupancy date variable is converted to a date format, allowing the extraction of the year for subsequent analysis. After this conversion, a new 'year' column is mutated to show trends in service user counts and occupancy rates from 2021 to 2024. 
+Once these steps are complete, relevant variables are selected from the raw dataset to simplify and clarify the analysis. The chosen variables include year, occupancy date, overnight service type, service user count, capacity type, actual capacity and occupancy rates. NAs exist in actual capacity and occupancy rates, but there are no needs to eliminate them since due to different capacity type of bed and room, NA appears in the opposite actual capacity and occupancy rates.
+
+## Summary Statistics of Variables
+To gain a better overview of the dataset, a table including key variables is provided. Table 1(@tbl-key-variables) presents year, overnight service type, service user count and occupancy rates.
+Year represents the year where the observation is collected. Overnight service type represents what service has been provided. Service user count records number of users taking service during that night. Occupancy rates record the proportion of actual capacity that is occupied.
 
 ```{r}
-#| label: fig-bills
-#| fig-cap: Bills of penguins
+#| label: tbl-key-variables
 #| echo: false
 #| warning: false
 #| message: false
 
+#  Create a subset includes key variables
+subset <- data[, c("year", "overnight_service_type", "service_user_count", "occupancy_rate_beds", 
+                   "occupancy_rate_rooms")]
 
+# Present the first ten rows of key variables as a sample
+sample <- head(subset)
+
+# Present the sample as a table
+kable(sample, col.names = c("year", "overnight service type", "service user count", 
+                            "occupancy rate beds", "occupancy rate rooms"), 
+      align = "ccc", 
+      caption = "Table 1: Sample of the key variables in Occupancy & Capacity Data")
+```
+
+Beside the sample table of ley variables, a summary statistics table of key variables can be provided to clarify some information of the data. Table 2(@tbl-summary-stats) presents the mean and standard deviation of service user counts and two occupancy rates. Service user counts has a mean at 73.73 and a standard deviation at about 91.68% which is pretty high and shows the great difference in user picks between different services. Occupancy rate of beds has a high mean at 98.24% and a standard deviation at 6.08%. This illustrates that the occupency rate of beds are approximately near 100 and are full occupied for most of the situations. Occupancy rate of rooms also has a high mean at 99.53% which is higher than occupancy rate of beds and a even lower standard deviation of 1.77%, suggesting that capacity of shelter rooms reaches nearly full and fuller than shelter rooms. However, the actual capacity of beds and rooms aren't included in this table; thus, the usage of shelter beds and rooms need to be considered more thoroughly by observing their actual capacity numbers. 
+
+```{r}
+#| label: tbl-summary-stats
+#| echo: false
+#| warning: false
+#| message: false
+
+# Calculate the mean of variables
+mean_user_cnt <- mean(data$service_user_count)
+mean_rate_bed <- mean(data$occupancy_rate_beds, na.rm = TRUE)
+mean_rate_room <- mean(data$occupancy_rate_rooms, na.rm = TRUE)
+
+# Calculate the sd of variables
+sd_user_cnt <- sd(data$service_user_count)
+sd_rate_bed <- sd(data$occupancy_rate_beds, na.rm = TRUE)
+sd_rate_room <- sd(data$occupancy_rate_rooms, na.rm = TRUE)
+
+#  Create a subset includes key variables
+summary_stats <- data.frame(Variable = c("Service User Count", "Occupancy Rate of Beds", 
+                                         "Occupancy Rate of Rooms"), 
+                            Mean = c(mean_user_cnt, mean_rate_bed, mean_rate_room), 
+                            SD = c(sd_user_cnt, sd_rate_bed, sd_rate_room))
+
+# Present the sample as a table
+kable(summary_stats, col.names = c("Variable", "Mean", "Standard Deviation"), 
+      align = "ccc", 
+      caption = "Table 2: Mean and Standard Deviation of Key Variables")
+```
+
+
+
+# Result
+Some of our data is of penguins (@fig-bills), from @palmerpenguins.
+
+```{r}
+#| label: fig-service-types
+#| fig-cap: Total service user counts for different overnight service types
+#| echo: false
+#| warning: false
+#| message: false
+
+data |> ggplot(aes(x = overnight_service_type, y = service_user_count)) +  
+  geom_col() + 
+  theme_minimal() + 
+  labs(x = "overnight service types", y = "service user counts") + 
+  coord_flip()
 
 
 ```
@@ -64,13 +137,17 @@ Talk more about it.
 And also planes (@fig-planes). (You can change the height and width, but don't worry about doing that until you have finished every other aspect of the paper - Quarto will try to make it look nice and the defaults usually work well once you have enough text.)
 
 ```{r}
-#| label: fig-planes
-#| fig-cap: Relationship between wing length and width
+#| label: fig-year-count
+#| fig-cap: Service user count change from 2021 to 2024
 #| echo: false
 #| warning: false
 #| message: false
 
-analysis_data <- read_csv(here::here("data/analysis_data/analysis_data.csv"))
+data |> ggplot(aes(x = year, y = service_user_count)) +  
+  geom_col() + 
+  theme_minimal() + 
+  labs(x = "years", y = "service user counts") + 
+  coord_flip()
 
 
 ```
