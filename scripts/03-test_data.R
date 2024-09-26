@@ -24,5 +24,6 @@ all(any_negative_bed, any_negative_room, any_negative_rate_bed, any_negative_rat
 # Test for NA in categorial columns
 all(!is.na(data$overnight_service_type))
 all(!is.na(data$capacity_type))
+all(!is.na(data$year))
 
 

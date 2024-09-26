@@ -24,7 +24,7 @@ library(opendatatoronto)
 library(here)
 library(ggplot2)
 library(knitr)
-
+library(dplyr)
 
 # Load the analysis data
 data <- read_csv(here::here("data", "analysis_data", "analysis_data.csv"))
@@ -81,7 +81,7 @@ kable(sample, col.names = c("year", "overnight service type", "service user coun
       caption = "Table 1: Sample of the key variables in Occupancy & Capacity Data")
 ```
 
-Beside the sample table of ley variables, a summary statistics table of key variables can be provided to clarify some information of the data. Table 2(@tbl-summary-stats) presents the mean and standard deviation of service user counts and two occupancy rates. Service user counts has a mean at 73.73 and a standard deviation at about 91.68% which is pretty high and shows the great difference in user picks between different services. Occupancy rate of beds has a high mean at 98.24% and a standard deviation at 6.08%. This illustrates that the occupency rate of beds are approximately near 100 and are full occupied for most of the situations. Occupancy rate of rooms also has a high mean at 99.53% which is higher than occupancy rate of beds and a even lower standard deviation of 1.77%, suggesting that capacity of shelter rooms reaches nearly full and fuller than shelter rooms. However, the actual capacity of beds and rooms aren't included in this table; thus, the usage of shelter beds and rooms need to be considered more thoroughly by observing their actual capacity numbers. 
+Beside the sample table of ley variables, a summary statistics table of key variables can be provided to clarify some information of the data. Table 2(@tbl-summary-stats) presents the mean and standard deviation of service user counts and two occupancy rates. Service user counts has a mean at 60.58 and a standard deviation at about 76.09% which is pretty high and shows the great difference in user picks between different services. Occupancy rate of beds has a high mean at 96.24% and a standard deviation at 9.28%. This illustrates that the occupency rate of beds are approximately near 100 and are full occupied for most of the situations. Occupancy rate of rooms also has a high mean at 97.03% which is slightly higher than occupancy rate of beds and a standard deviation of 10.82%, suggesting that capacity of shelter rooms reaches nearly full and fuller than shelter rooms. However, the actual capacity of beds and rooms aren't included in this table; thus, the usage of shelter beds and rooms need to be considered more thoroughly by observing their actual capacity numbers. 
 
 ```{r}
 #| label: tbl-summary-stats
@@ -111,7 +111,48 @@ kable(summary_stats, col.names = c("Variable", "Mean", "Standard Deviation"),
       caption = "Table 2: Mean and Standard Deviation of Key Variables")
 ```
 
+For deeper explore in service user count and capacity in different years, the sum of these variables from 2021 to 2024 needs to be examined. Occupancy rate of beds and rooms cannot reflect the total difference usage of all shelters, as well as the mean of service user counts. They can only represent the common usage situation of every shelter in total. While Table 3(@tbl-total) provides a table of total service user counts and actual capacity for both beds and rooms. Within these data, a more complete result can be figured out and will be used for data visualization later.
 
+```{r}
+#| label: tbl-total
+#| echo: false
+#| warning: false
+#| message: false
+
+# Calculate the sum of service user counts in each year
+sum_cnt_2021 <- sum(data$service_user_count[data$year == 2021], na.rm = TRUE)
+sum_cnt_2022 <- sum(data$service_user_count[data$year == 2022], na.rm = TRUE)
+sum_cnt_2023 <- sum(data$service_user_count[data$year == 2023], na.rm = TRUE)
+sum_cnt_2024 <- sum(data$service_user_count[data$year == 2024], na.rm = TRUE)
+
+# Calculate the sum of actual bed capacity in each year
+sum_bed_2021 <- sum(data$capacity_actual_bed[data$year == 2021], na.rm = TRUE)
+sum_bed_2022 <- sum(data$capacity_actual_bed[data$year == 2022], na.rm = TRUE)
+sum_bed_2023 <- sum(data$capacity_actual_bed[data$year == 2023], na.rm = TRUE)
+sum_bed_2024 <- sum(data$capacity_actual_bed[data$year == 2024], na.rm = TRUE)
+
+# Calculate the sum of actual bed capacity in each year
+sum_room_2021 <- sum(data$capacity_actual_room[data$year == 2021], na.rm = TRUE)
+sum_room_2022 <- sum(data$capacity_actual_room[data$year == 2022], na.rm = TRUE)
+sum_room_2023 <- sum(data$capacity_actual_room[data$year == 2023], na.rm = TRUE)
+sum_room_2024 <- sum(data$capacity_actual_room[data$year == 2024], na.rm = TRUE)
+
+#  Create a subset includes key variables
+summary_stats <- data.frame(Year = c("2021", "2022", "2023", "2024"), 
+                            Service_User_Counts_Sum = c(sum_cnt_2021, sum_cnt_2022, 
+                                                       sum_cnt_2023, sum_cnt_2024), 
+                            Actual_Bed_Capacity_Sum = c(sum_bed_2021, sum_bed_2022, 
+                                                        sum_bed_2023, sum_bed_2024), 
+                            Actual_Room_Capacity_Sum = c(sum_room_2021, sum_room_2022, 
+                                                         sum_room_2023, sum_room_2024)
+                            )
+
+# Present the sample as a table
+kable(summary_stats, col.names = c("Year", "Total Service User Counts", 
+                                   "Total Actual Bed Capacity", "Total Actual Room Capacity"), 
+      align = "ccc", 
+      caption = "Table 3: Total Service User Count and Actual Capacity between years")
+```
 
 # Result
 Some of our data is of penguins (@fig-bills), from @palmerpenguins.
@@ -143,18 +184,33 @@ And also planes (@fig-planes). (You can change the height and width, but don't w
 #| warning: false
 #| message: false
 
+data$year <- as.factor(data$year)
+
 data |> ggplot(aes(x = year, y = service_user_count)) +  
   geom_col() + 
   theme_minimal() + 
-  labs(x = "years", y = "service user counts") + 
-  coord_flip()
-
-
+  labs(x = "years", y = "service user counts") +  
+  scale_y_continuous(labels = scales::comma)
 ```
 
 Talk way more about it. 
 
+```{r}
+#| label: fig-year-count
+#| fig-cap: Service user count change from 2021 to 2024
+#| echo: false
+#| warning: false
+#| message: false
 
+data$year <- as.factor(data$year)
+
+data |> ggplot(aes(x = year, y = occurency_rate_beds)) +  
+  geom_line() + 
+  theme_minimal() + 
+  labs(x = "years", y = "service user counts") + 
+  scale_y_continuous(labels = scales::comma)
+
+```
 
 
 \newpage
