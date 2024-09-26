@@ -5,7 +5,7 @@ author:
 thanks: "Code and data are available at: https://github.com/Anjojoo/Toronto-Overnight-Servive-Occupancy-Capacity."
 date: today
 date-format: long
-abstract: "In this report, the overnight service occupancy and capacity of Toronto is analyzed. "
+abstract: "This paper analyzes the overnight service occupancy and capacity of shelters in Toronto, utilizing data from OpenDataToronto. Employing the R programming language along with various packages, the analysis focuses on shelter usage trends, specifically examining changes in occupancy rates and actual capacity over the years. The results indicate an overall upward trend in shelter occupancy rates, while a significant decline in actual capacity was observed in 2024. These findings highlight the need for strategic resource allocation and improved response strategies concerning shelter occupancy in the future."
 format: 
   pdf: 
     toc: true
@@ -33,15 +33,13 @@ data <- read_csv(here::here("data", "analysis_data", "analysis_data.csv"))
 
 # Introduction
 
-Briefly introduce the analyzing reason and background information.
-From what perspective and how to analyze
-Key results
-Structure introduce
+The growing issue of homelessness in urban centers like Toronto has created an urgent need to analyze shelter occupancy and capacity, as shelters are critical for providing temporary housing to those in need. To effectively manage and improve these services, understanding usage trends is essential. This paper focuses on analyzing the "Daily Shelter & Overnight Service Occupancy & Capacity" dataset from OpenDataToronto(@citeopendatatoronto), covering data from 2021 to 2024. This dataset includes daily records of shelter occupancy, capacity, and types of overnight services provided, offering a comprehensive view of the situation in Toronto. The motivation behind this study is to address the fluctuating demand for shelter services and inform strategies for more efficient allocation of resources to support vulnerable populations.
 
-You can and should cross-reference sections and sub-sections. We use @citeR and @alexander2023telling.
+The study involves a detailed analysis of shelter usage trends, employing R programming(@citeR) and @alexander2023telling mainly. Besides, associated packages of R are applied to clean, manipulate, and visualize the data. Tools like tidyverse(@citetidyverse), ggplot2(@citeggplot2), dplyr(@citedplyr), and others facilitated data processing and visualization, enabling a deeper examination of occupancy rates and capacity changes over the years. The findings reveal an overall upward trend in shelter occupancy rates, suggesting increased demand for these services. A significant decline in actual capacity was observed in 2024, which underscores a mismatch between available resources and the needs of shelter users. Summary statistics were computed to highlight trends in service user counts and occupancy rates, providing insights into how shelter usage has evolved.
 
-The remainder of this paper is structured as follows. @sec-data....
+This paper's findings are crucial for policy makers, social service organizations, and urban planners. By shedding light on the trends in shelter occupancy and capacity, the study identifies gaps in service and potential areas for improvement. The analysis has implications for future resource allocation, as understanding the patterns of shelter usage can help design better support strategies, optimize capacity, and improve the overall response to homelessness in urban areas. Additionally, it can serve as a model for analyzing shelter systems in other cities, offering a framework for data-driven decision-making.
 
+The remainder of this paper is structured as follows. Section 2(@sec-data) provides details on the data source, including the specific variables used, and describes the data cleaning process to prepare for analysis. This data section also outlines the tools and methodologies applied. Section 3(@sec-results) presents the key results, focusing on occupancy rates, service user counts, and actual capacity over time. Visualizations are used to intuitively convey these findings. Section 4{@sec-dis} offers a discussion of the results and their implications, summarizing conclusions and emphasizing the importance of balancing shelter occupancy and capacity for effective service provision. The comprehensive structure ensures that the reader gains a full understanding of what was analyzed, the findings, and their significance.
 
 
 # Data {#sec-data}
@@ -51,7 +49,10 @@ This paper analyzes data from the "Daily Shelter & Overnight Service Occupancy &
 A similar dataset, "Daily Shelter Occupancy," is also available on OpenDataToronto but  only provides data up to March 10, 2022, and includes fewer variables. In contrast, "Daily Shelter & Overnight Service Occupancy & Capacity" features the most recent data, refreshed on 25 September, 2024. It builds upon and enhances the earlier dataset by incorporating additional key variables, including "overnight service type" and "actual capacity." The "overnight service type" variable categorizes the types of overnight services offered in Toronto's shelters, helping analyze variations in user counts by service type. The "actual capacity" variable represents the true available capacity of shelters, as opposed to the funding-based capacity in the previous dataset, offering a more accurate measure of occupancy rates for further analysis.
 
 ## Data Tools
-The data was simulated, extracted, and cleaned by R[@citeR] from the opendatatoronto package[@citeopendatatoronto]. Tidyverse[@citetidyverse], here[@citehere], ggplot2[@citeggplot2], dplyr[@citedplyr], lubridate[@lubridate], janitor[@citejanitor] and knitr[@knitr] are all applied in the analysis.
+The data was simulated, extracted, and cleaned by R[@citeR] from the opendatatoronto package[@citeopendatatoronto]. Tidyverse[@citetidyverse], here[@citehere], ggplot2[@citeggplot2], dplyr[@citedplyr], lubridate[@citelubridate], janitor[@citejanitor] and knitr[@citeknitr] are all applied in the analysis.
+
+## Data Measurement and Ethics
+
 
 ## Clean Data
 Prior to analysis, data cleaning is essential to remove unnecessary columns and create new ones for further examination. The occupancy date variable is converted to a date format, allowing the extraction of the year for subsequent analysis. After this conversion, a new 'year' column is mutated to show trends in service user counts and occupancy rates from 2021 to 2024. 
@@ -154,8 +155,11 @@ kable(summary_stats, col.names = c("Year", "Total Service User Counts",
       caption = "Table 3: Total Service User Count and Actual Capacity between years")
 ```
 
-# Result
-Some of our data is of penguins (@fig-bills), from @palmerpenguins.
+# Result{#sec-results}
+Data visualizations can be used to present results more intuitively, and the data used to visualize  is from @citeopendatatoronto. 
+
+## Overnight Service Usage
+The graph below displays the user counts for various overnight service types, offering a clear comparison. This visualization helps identify the most frequently used service across all types.
 
 ```{r}
 #| label: fig-service-types
@@ -165,17 +169,17 @@ Some of our data is of penguins (@fig-bills), from @palmerpenguins.
 #| message: false
 
 data |> ggplot(aes(x = overnight_service_type, y = service_user_count)) +  
-  geom_col() + 
+  geom_col(fill = "orange") + 
   theme_minimal() + 
   labs(x = "overnight service types", y = "service user counts") + 
-  coord_flip()
-
+  coord_flip() + 
+  scale_y_continuous(labels = scales::comma)
 
 ```
 
-Talk more about it.
+@fig-service-types shows the distribution of overnight service usage. It is evident that Shelter and Motel/Hotel Shelter services have the highest user counts, with values nearly identical. The 24-Hour Respite Site ranks third, while the remaining services have significantly fewer users compared to these top three. This highlights that Shelter and Motel/Hotel Shelter are the most commonly chosen services in Toronto, likely due to the more comprehensive support they offer compared to other service types.
 
-And also planes (@fig-planes). (You can change the height and width, but don't worry about doing that until you have finished every other aspect of the paper - Quarto will try to make it look nice and the defaults usually work well once you have enough text.)
+## Service Count Change
 
 ```{r}
 #| label: fig-year-count
@@ -187,30 +191,83 @@ And also planes (@fig-planes). (You can change the height and width, but don't w
 data$year <- as.factor(data$year)
 
 data |> ggplot(aes(x = year, y = service_user_count)) +  
-  geom_col() + 
+  geom_col(color = "orange") + 
   theme_minimal() + 
   labs(x = "years", y = "service user counts") +  
   scale_y_continuous(labels = scales::comma)
 ```
 
-Talk way more about it. 
+Figure 2(@fig-year-count) shows the number of service users across different years from 2021 to 2024, as also detailed in Table 3(@tbl-total). The graph highlights a clear upward trend from 2021 to 2023, followed by a decline in 2024. However, the total number of service users in 2024 remains higher than in 2021.
+
+## Average Occupancy Rate Change
 
 ```{r}
-#| label: fig-year-count
-#| fig-cap: Service user count change from 2021 to 2024
+#| label: fig-rate-mean
+#| fig-cap: Average Occupancy Rate of Beds and Rooms from 2021 to 2024
 #| echo: false
 #| warning: false
 #| message: false
 
-data$year <- as.factor(data$year)
+avg_rate <- data %>%
+  group_by(year) %>%
+  summarize(
+    avg_rate_bed = mean(occupancy_rate_beds, na.rm = TRUE),
+    avg_rate_room = mean(occupancy_rate_rooms, na.rm = TRUE)
+  )
 
-data |> ggplot(aes(x = year, y = occurency_rate_beds)) +  
-  geom_line() + 
+# Reshape the data to long format for plotting with side-by-side bars
+df_long <- tidyr::pivot_longer(avg_rate, cols = c("avg_rate_bed", "avg_rate_room"),
+                               names_to = "type",
+                               values_to = "average")
+
+# Plot using ggplot2
+ggplot(df_long, aes(x = factor(year), y = average, fill = type)) +
+  geom_bar(stat = "identity", position = position_dodge(width = 0.9)) + 
+  labs(x = "Year", y = "Average Occupancy Rate", fill = "Type") +
   theme_minimal() + 
-  labs(x = "years", y = "service user counts") + 
-  scale_y_continuous(labels = scales::comma)
+  geom_text(aes(label = round(average, 1)), 
+            position = position_dodge(width = 0.9), 
+            vjust = -0.5, size = 3.5)
 
 ```
+
+Figure 3(@fig-rate-mean) illustrates the trend in the average occupancy rates of beds and rooms from 2021 to 2024. Both categories exhibit an upward trend, although the increase in the occupancy rates of beds and rooms from year to year is quite modest. Overall, the average occupancy rate for rooms consistently surpasses that of beds each year. In 2024, the average room occupancy rate reached 99.5%, indicating nearly full occupancy of shelter rooms, while the average bed occupancy rate achieved 98.3%, slightly lower than the average room occupancy rate.
+
+## Total Actual Capacity Change
+
+```{r}
+#| label: fig-total-cap
+#| fig-cap: Total Actual Capacity of Beds and Rooms from 2021 to 2024
+#| echo: false
+#| warning: false
+#| message: false
+
+total_cap <- data %>%
+  group_by(year) %>%
+  summarize(
+    total_cap_bed = sum(capacity_actual_bed, na.rm = TRUE),
+    total_cap_room = sum(capacity_actual_room, na.rm = TRUE)
+  )
+
+# Reshape the data to long format for plotting with side-by-side bars
+df_long <- tidyr::pivot_longer(total_cap, cols = c("total_cap_bed", "total_cap_room"),
+                               names_to = "type",
+                               values_to = "total")
+
+# Plot using ggplot2
+ggplot(df_long, aes(x = factor(year), y = total, fill = type)) +
+  geom_bar(stat = "identity", position = position_dodge(width = 0.9)) + 
+  labs(x = "Year", y = "Total Actual Capacity", fill = "Type") +
+  theme_minimal()
+
+```
+
+Figure 4(@fig-total-cap) illustrates the total actual capacity of beds and rooms from 2021 to 2024, allowing for a comparison of the capacities across two categories. Notably, as shown in Figure 3(@fig-rate-mean), rooms consistently exhibit a higher occupancy rate than beds over all four years. The plots indicate that the total actual capacity of rooms was only greater than that of beds in 2021 and 2022; however, in 2023 and 2024, the capacity of beds surpassed that of rooms significantly. Additionally, the total actual capacity of beds demonstrated an increasing trend from 2021 to 2023, followed by a decline in 2024. Conversely, the total actual capacity of rooms exhibited an upward trend from 2021 to 2022, after which it began to decrease until reaching its lowest point in 2024.
+
+# Discussion {#sec-dis}
+## Summary Conclusions
+
+
 
 
 \newpage

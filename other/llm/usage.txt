@@ -25,6 +25,63 @@ na.rm = TRUE: Ignores NA values when performing the test.
 any(): Returns TRUE if any negative value exists, otherwise FALSE.
 
 
+Date: 26 September 2024
+
+User:
+How to use R draw a plot with "year" column on x-axis, average of "occupancy rate of bed" on y-axis with color of red, and another bin next to the bin with color of green and average of "occupancy rate of room" on y-axis with color of red
+
+ChatGPT:
+To create a plot in R with the "year" column on the x-axis, and two side-by-side bars representing the average "occupancy rate of bed" and the average "occupancy rate of room," with specified colors, you can use the ggplot2 package. Here's an example of how to do this:
+
+Step-by-Step:
+Install ggplot2 if not already installed:
+
+r:
+install.packages("ggplot2")
+Prepare the data: You need to calculate the averages for both the "occupancy rate of bed" and "occupancy rate of room" for each year.
+
+Plot the data using ggplot2.
+
+Here’s an example code:
+
+r:
+# Load ggplot2 package
+library(ggplot2)
+
+# Assuming your dataset is named df
+# Calculate averages per year
+df_avg <- df %>%
+  group_by(year) %>%
+  summarize(
+    avg_bed = mean(`occupancy rate of bed`, na.rm = TRUE),
+    avg_room = mean(`occupancy rate of room`, na.rm = TRUE)
+  )
+
+# Reshape the data to long format for plotting with side-by-side bars
+df_long <- tidyr::pivot_longer(df_avg, cols = c("avg_bed", "avg_room"),
+                               names_to = "type",
+                               values_to = "average")
+
+# Plot using ggplot2
+ggplot(df_long, aes(x = factor(year), y = average, fill = type)) +
+  geom_bar(stat = "identity", position = position_dodge(width = 0.9)) +
+  scale_fill_manual(values = c("avg_bed" = "red", "avg_room" = "green")) +
+  labs(x = "Year", y = "Average Occupancy Rate", fill = "Type") +
+  theme_minimal()
+Explanation:
+Data Preparation:
+
+group_by(year) groups the data by year.
+summarize() calculates the mean of "occupancy rate of bed" and "occupancy rate of room" for each year, excluding NA values.
+Reshaping:
+
+pivot_longer() transforms the data into a "long" format where type represents whether it’s the "avg_bed" or "avg_room," and average represents the value. This makes it easier to plot side-by-side bars.
+Plotting:
+
+aes(x = factor(year), y = average, fill = type) defines the aesthetics, with year on the x-axis, average on the y-axis, and different colors for the types ("avg_bed" in red, "avg_room" in green).
+geom_bar(stat = "identity", position = position_dodge(width = 0.9)) creates side-by-side bars.
+scale_fill_manual() assigns red to "avg_bed" and green to "avg_room".
+
 
 
 

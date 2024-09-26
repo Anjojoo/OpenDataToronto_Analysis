@@ -9,6 +9,7 @@
 
 #### Workspace setup ####
 library(tidyverse)
+library(lubridate)
 
 #### Simulate data ####
 set.seed(102)
@@ -34,6 +35,7 @@ simulated_data <- tibble(
   OCCUPANCY_DATE = as.Date(runif(n = number_of_datas, min = as.numeric(start_date), 
                                         max = as.numeric(end_date)), 
   origin = "1970-01-01"), 
+  Year = year(OCCUPANCY_DATE), 
   OVERNIGHT_SERVICE_TYPE = sample(overnight_service_type, number_of_datas, replace = TRUE), 
   SERVICE_USER_COUNT = rpois(n = number_of_datas, lambda = 330), 
   CAPACITY_TYPE = sample(capacity_type, number_of_datas, replace = TRUE), 
