@@ -38,7 +38,7 @@ The study involves a detailed analysis of shelter usage trends, employing R prog
 
 This paper's findings can be helpful for policy makers, social service organizations, and urban planners. By shedding light on the trends in shelter occupancy and capacity, the study identifies gaps in service and potential areas for improvement. The analysis has implications for future resource allocation, as understanding the patterns of shelter usage can help design better support strategies, optimize capacity, and improve the overall response to homelessness in urban areas. Additionally, it can serve as a model for analyzing shelter systems in other cities, offering a framework for global cases.
 
-The remainder of this paper is structured as follows. @sec-data provides details on the data source, including the specific variables used, and describes the data cleaning process to prepare for analysis. Data tools and methodologies applied in this paper are also stated in this section. Measurement and ethics are considered as well. @sec-results presents the key results, focusing on occupancy rates, service user counts, and actual capacity over time; Visualizations are used to intuitively convey these findings. @sec-dis offers a discussion of the results and their implications,also emphasizing the importance of balancing shelter occupancy and capacity for effective service provision while limitations point out some weakness in this paper. The comprehensive structure ensures that the reader gains a full understanding of what was analyzed, the findings, and their significance.
+The remainder of this paper is structured as follows. @sec-data provides details on the data source, including the specific variables used, and describes the data cleaning process to prepare for analysis. Data tools and methodologies applied in this paper are also stated in this section. Measurement and ethics are considered as well. @sec-results presents the key results, focusing on occupancy rates, service user counts, and actual capacity over time; Visualizations are used to intuitively convey these findings. @sec-dis offers a discussion of the results and their implications,also emphasizing the importance of balancing shelter occupancy and capacity for effective service provision while limitations point out some weakness in this paper. @sec-app provides additional details for the paper, including process of data cleaning. The comprehensive structure ensures that the reader gains a full understanding of what was analyzed, the findings, and their significance.
 
 
 # Data {#sec-data}
@@ -56,8 +56,8 @@ For the data measurement of "Daily Shelter & Overnight Service Occupancy & Capac
 The ethical consideration included ensuring that the data used reflects accurate and timely reporting from the open-source platform and respecting the privacy of the individuals indirectly represented in the data. The data are collected anonymized and does not contain personally identifiable information, ensuring privacy and confidentiality of shelter users.
 
 ## Clean Data
-Prior to analysis, data cleaning is essential to remove unnecessary columns and create new ones for further examination. The occupancy date variable is converted to a date format, allowing the extraction of the year for subsequent analysis. After this conversion, a new 'year' column is mutated to show trends in service user counts and occupancy rates from 2021 to 2024. 
-Once these steps are complete, relevant variables are selected from the raw dataset to simplify and clarify the analysis. The chosen variables include year, occupancy date, overnight service type, service user count, capacity type, actual capacity and occupancy rates. NAs exist in actual capacity and occupancy rates, but there are no needs to eliminate them since due to different capacity type of bed and room, NA appears in the opposite actual capacity and occupancy rates.
+Prior to analysis, data cleaning is essential to remove unnecessary columns and create new ones for further examination. 
+New "year" column is mutated to show trends in service user counts and occupancy rates from 2021 to 2024. Afterwards, relevant variables are selected from the raw dataset to simplify and clarify the analysis. The chosen variables include year, occupancy date, overnight service type, service user count, capacity type, actual capacity and occupancy rates. NAs exist in actual capacity and occupancy rates, but there are no needs to eliminate them since due to different capacity type of bed and room, NA appears in the opposite actual capacity and occupancy rates.
 
 ## Summary Statistics of Variables
 To gain a better overview of the dataset, a table including key variables is provided. @tbl-key-variables presents year, overnight service type, service user count and occupancy rates.
@@ -310,7 +310,9 @@ Additionally, while occupancy rates provide useful insights into shelter usage, 
 
 The consideration of external factors that can affect average occupancy rates are not included in this paper. As the shelter demand can change at specific times, such as during extreme weather conditions or economic downturns. 
 
-
+# Appendix {#sec-appendix}
+## Details of Data Cleaning
+Occupancy date of 2021-2024 raw data are all transformed into date format for following new column of "year" mutation which represents the year of occupancy and capacity data that are collected. After the transformation, a combination work of these four raw dataset is done for more efficient following variables selection among all data. NAs are cleaned in categorical variable of overnight service type.
 
 \newpage
 
