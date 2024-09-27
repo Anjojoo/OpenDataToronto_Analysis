@@ -1,8 +1,8 @@
 #### Preamble ####
 # Purpose: Sanity check of the raw occupancy and capacity data
-# Author: Angel Xu
+# Author: Victoria Zheng
 # Date: 24 Spetember 2024
-# Contact: anjojoo.xu@mail.utoronto.ca
+# Contact: victoria.zheng@mail.utoronto.ca
 # Pre-requisites: None
 # Any other information needed? None
 

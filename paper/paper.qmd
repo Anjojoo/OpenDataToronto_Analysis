@@ -1,7 +1,7 @@
 ---
 title: "An Analysis of daily shelter and overnight service usage in Toronto focusing on shelter occupancy and capacity"
 author: 
-  - "Angel Xu"
+  - "Victoria Zheng"
 thanks: "Code and data are available at: https://github.com/Anjojoo/Toronto-Overnight-Servive-Occupancy-Capacity."
 date: today
 date-format: long

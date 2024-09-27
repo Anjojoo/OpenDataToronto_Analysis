@@ -1,8 +1,8 @@
 #### Preamble ####
 # Purpose: Downloads and saves the data from OpenDataToronto
-# Author: Angel Xu
+# Author: Victoria Zheng
 # Date: 24 September 2024
-# Contact: anjojoo.xu@mail.utoronto.ca
+# Contact: victoria.zheng@mail.utoronto.ca
 # Pre-requisites: None
 # Any other information needed? None
 
