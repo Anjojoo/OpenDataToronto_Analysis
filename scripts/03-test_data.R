@@ -15,16 +15,22 @@ simulated_data <- read_csv("data/raw_data/simulated_data.csv")
 
 # Test for negative numbers in numerical columns
 simulated_data$SERVICE_USER_COUNT |> min() < 0
-simulated_any_negative_bed <- any(simulated_data$CAPACITY_ACTUAL_BED |> min() < 0, 
-                                  na.rm = TRUE)
-simulated_any_negative_room <- any(simulated_data$CAPACITY_ACTUAL_ROOM |> min() < 0, 
-                                   na.rm = TRUE)
-simulated_any_negative_rate_bed <- any(simulated_data$OCCUPANCY_RATE_BEDS |> min() < 0, 
-                                       na.rm = TRUE)
-simulated_any_negative_rate_room <- any(simulated_data$OCCUPANCY_RATE_ROOMS |> min() < 0, 
-                                        na.rm = TRUE)
-all(simulated_any_negative_bed, simulated_any_negative_room, 
-    simulated_any_negative_rate_bed, simulated_any_negative_rate_room)
+simulated_any_negative_bed <- any(simulated_data$CAPACITY_ACTUAL_BED |> min() < 0,
+  na.rm = TRUE
+)
+simulated_any_negative_room <- any(simulated_data$CAPACITY_ACTUAL_ROOM |> min() < 0,
+  na.rm = TRUE
+)
+simulated_any_negative_rate_bed <- any(simulated_data$OCCUPANCY_RATE_BEDS |> min() < 0,
+  na.rm = TRUE
+)
+simulated_any_negative_rate_room <- any(simulated_data$OCCUPANCY_RATE_ROOMS |> min() < 0,
+  na.rm = TRUE
+)
+all(
+  simulated_any_negative_bed, simulated_any_negative_room,
+  simulated_any_negative_rate_bed, simulated_any_negative_rate_room
+)
 
 # Test for NA in categorical columns
 all(is.na(simulated_data$OVERNIGHT_SERVICE_TYPE))
@@ -46,5 +52,3 @@ all(any_negative_bed, any_negative_room, any_negative_rate_bed, any_negative_rat
 all(is.na(data$overnight_service_type))
 all(is.na(data$capacity_type))
 all(is.na(data$year))
-
-

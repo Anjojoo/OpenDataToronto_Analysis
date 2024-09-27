@@ -29,5 +29,3 @@ write_csv(raw_data_2021, "data/raw_data/raw_data_2021.csv")
 write_csv(raw_data_2022, "data/raw_data/raw_data_2022.csv")
 write_csv(raw_data_2023, "data/raw_data/raw_data_2023.csv")
 write_csv(raw_data_2024, "data/raw_data/raw_data_2024.csv")
-
-
