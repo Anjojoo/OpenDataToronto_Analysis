@@ -310,7 +310,7 @@ Additionally, while occupancy rates provide useful insights into shelter usage, 
 
 The consideration of external factors that can affect average occupancy rates are not included in this paper. As the shelter demand can change at specific times, such as during extreme weather conditions or economic downturns. 
 
-# Appendix {#sec-appendix}
+# Appendix {#sec-app}
 ## Details of Data Cleaning
 Occupancy date of 2021-2024 raw data are all transformed into date format for following new column of "year" mutation which represents the year of occupancy and capacity data that are collected. After the transformation, a combination work of these four raw dataset is done for more efficient following variables selection among all data. NAs are cleaned in categorical variable of overnight service type.
 
