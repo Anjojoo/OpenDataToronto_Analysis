@@ -1,8 +1,8 @@
 #### Preamble ####
 # Purpose: Simulates the occupancy and capacity data
-# Author: Victoria Zheng
+# Author: Angel Xu
 # Date: 21 September 2024
-# Contact: victoria.zheng@mail.utoronto.ca
+# Contact: anjojoo.xu@mail.utoronto.ca
 # Pre-requisites: None
 # Any other information needed? None
 

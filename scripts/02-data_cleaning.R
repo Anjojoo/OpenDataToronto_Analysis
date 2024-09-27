@@ -1,8 +1,8 @@
 #### Preamble ####
 # Purpose: Cleans the raw occupancy and capacity data recorded in the raw dataset
-# Author: Victoria Zheng
+# Author: Angel Xu
 # Date: 23 September 2024
-# Contact: victoria.zheng@mail.utoronto.ca
+# Contact: anjojoo.xu@mail.utoronto.ca
 # Pre-requisites: None
 # Any other information needed? None
 
