@@ -10,4 +10,4 @@ This repo is structured as:
 -   `scripts` contains the R scripts used to simulate, download and clean data.
 
 # Statement on LLM usage
-Use ChatGPT-4 for assistance in resolving data test problems in scripts file. The entire chat history is available in inputs/llms/usage.txt.
+Use ChatGPT-4 for assistance in resolving data test problems in scripts file and plot coding problems in the paper. The entire chat history is available in inputs/llms/usage.txt.

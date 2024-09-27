@@ -286,6 +286,7 @@ Additionally, while occupancy rates provide useful insights into shelter usage, 
 The consideration of external factors that can affect average occupancy rates are not included in this paper. As the shelter demand can change at specific times, such as during extreme weather conditions or economic downturns. 
 
 
+
 \newpage
 
 
