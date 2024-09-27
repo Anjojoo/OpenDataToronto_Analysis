@@ -70,17 +70,23 @@ Year represents the year where the observation is collected. Overnight service t
 #| message: false
 
 #  Create a subset includes key variables
-subset <- data[, c("year", "overnight_service_type", "service_user_count", "occupancy_rate_beds", 
-                   "occupancy_rate_rooms")]
+subset <- data[, c(
+  "year", "overnight_service_type", "service_user_count", "occupancy_rate_beds",
+  "occupancy_rate_rooms"
+)]
 
 # Present the first ten rows of key variables as a sample
 sample <- head(subset)
 
 # Present the sample as a table
-kable(sample, col.names = c("year", "overnight service type", "service user count", 
-                            "occupancy rate beds", "occupancy rate rooms"), 
-      align = "ccc", 
-      caption = "Table 1: Sample of the key variables in Occupancy & Capacity Data")
+kable(sample,
+  col.names = c(
+    "year", "overnight service type", "service user count",
+    "occupancy rate beds", "occupancy rate rooms"
+  ),
+  align = "ccc",
+  caption = "Table 1: Sample of the key variables in Occupancy & Capacity Data"
+)
 ```
 
 Beside the sample table of ley variables, a summary statistics table of key variables can be provided to clarify some information of the data. @tbl-summary-stats presents the mean and standard deviation of service user counts and two occupancy rates. Service user counts has a mean at 60.58 and a standard deviation at about 76.09% which is pretty high and shows the great difference in user picks between different services. Occupancy rate of beds has a high mean at 96.24% and a standard deviation at 9.28%. This illustrates that the occupency rate of beds are approximately near 100 and are full occupied for most of the situations. Occupancy rate of rooms also has a high mean at 97.03% which is slightly higher than occupancy rate of beds and a standard deviation of 10.82%, suggesting that capacity of shelter rooms reaches nearly full and fuller than shelter rooms. However, the actual capacity of beds and rooms aren't included in this table; thus, the usage of shelter beds and rooms need to be considered more thoroughly by observing their actual capacity numbers. 
@@ -102,15 +108,21 @@ sd_rate_bed <- sd(data$occupancy_rate_beds, na.rm = TRUE)
 sd_rate_room <- sd(data$occupancy_rate_rooms, na.rm = TRUE)
 
 #  Create a subset includes key variables
-summary_stats <- data.frame(Variable = c("Service User Count", "Occupancy Rate of Beds", 
-                                         "Occupancy Rate of Rooms"), 
-                            Mean = c(mean_user_cnt, mean_rate_bed, mean_rate_room), 
-                            SD = c(sd_user_cnt, sd_rate_bed, sd_rate_room))
+summary_stats <- data.frame(
+  Variable = c(
+    "Service User Count", "Occupancy Rate of Beds",
+    "Occupancy Rate of Rooms"
+  ),
+  Mean = c(mean_user_cnt, mean_rate_bed, mean_rate_room),
+  SD = c(sd_user_cnt, sd_rate_bed, sd_rate_room)
+)
 
 # Present the sample as a table
-kable(summary_stats, col.names = c("Variable", "Mean", "Standard Deviation"), 
-      align = "ccc", 
-      caption = "Table 2: Mean and Standard Deviation of Key Variables")
+kable(summary_stats,
+  col.names = c("Variable", "Mean", "Standard Deviation"),
+  align = "ccc",
+  caption = "Table 2: Mean and Standard Deviation of Key Variables"
+)
 ```
 
 For deeper explore in service user count and capacity in different years, the sum of these variables from 2021 to 2024 needs to be examined. Occupancy rate of beds and rooms cannot reflect the total difference usage of all shelters, as well as the mean of service user counts. They can only represent the common usage situation of every shelter in total. While @tbl-total provides a table of total service user counts and actual capacity for both beds and rooms. Within these data, a more complete result can be figured out and will be used for data visualization later.
@@ -140,20 +152,31 @@ sum_room_2023 <- sum(data$capacity_actual_room[data$year == 2023], na.rm = TRUE)
 sum_room_2024 <- sum(data$capacity_actual_room[data$year == 2024], na.rm = TRUE)
 
 #  Create a subset includes key variables
-summary_stats <- data.frame(Year = c("2021", "2022", "2023", "2024"), 
-                            Service_User_Counts_Sum = c(sum_cnt_2021, sum_cnt_2022, 
-                                                       sum_cnt_2023, sum_cnt_2024), 
-                            Actual_Bed_Capacity_Sum = c(sum_bed_2021, sum_bed_2022, 
-                                                        sum_bed_2023, sum_bed_2024), 
-                            Actual_Room_Capacity_Sum = c(sum_room_2021, sum_room_2022, 
-                                                         sum_room_2023, sum_room_2024)
-                            )
+summary_stats <- data.frame(
+  Year = c("2021", "2022", "2023", "2024"),
+  Service_User_Counts_Sum = c(
+    sum_cnt_2021, sum_cnt_2022,
+    sum_cnt_2023, sum_cnt_2024
+  ),
+  Actual_Bed_Capacity_Sum = c(
+    sum_bed_2021, sum_bed_2022,
+    sum_bed_2023, sum_bed_2024
+  ),
+  Actual_Room_Capacity_Sum = c(
+    sum_room_2021, sum_room_2022,
+    sum_room_2023, sum_room_2024
+  )
+)
 
 # Present the sample as a table
-kable(summary_stats, col.names = c("Year", "Total Service User Counts", 
-                                   "Total Actual Bed Capacity", "Total Actual Room Capacity"), 
-      align = "ccc", 
-      caption = "Table 3: Total Service User Count and Actual Capacity between years")
+kable(summary_stats,
+  col.names = c(
+    "Year", "Total Service User Counts",
+    "Total Actual Bed Capacity", "Total Actual Room Capacity"
+  ),
+  align = "ccc",
+  caption = "Table 3: Total Service User Count and Actual Capacity between years"
+)
 ```
 
 # Result{#sec-results}
@@ -169,13 +192,12 @@ The graph below displays the user counts for various overnight service types, of
 #| warning: false
 #| message: false
 
-data |> ggplot(aes(x = overnight_service_type, y = service_user_count)) +  
-  geom_col(fill = "orange") + 
-  theme_minimal() + 
-  labs(x = "overnight service types", y = "service user counts") + 
-  coord_flip() + 
+data |> ggplot(aes(x = overnight_service_type, y = service_user_count)) +
+  geom_col(fill = "orange") +
+  theme_minimal() +
+  labs(x = "overnight service types", y = "service user counts") +
+  coord_flip() +
   scale_y_continuous(labels = scales::comma)
-
 ```
 
 @fig-service-types shows the distribution of overnight service usage. It is evident that Shelter and Motel/Hotel Shelter services have the highest user counts, with values nearly identical. The 24-Hour Respite Site ranks third, while the remaining services have significantly fewer users compared to these top three. This highlights that Shelter and Motel/Hotel Shelter are the most commonly chosen services in Toronto, likely due to the more comprehensive support they offer compared to other service types.
@@ -191,10 +213,10 @@ data |> ggplot(aes(x = overnight_service_type, y = service_user_count)) +
 
 data$year <- as.factor(data$year)
 
-data |> ggplot(aes(x = year, y = service_user_count)) +  
-  geom_col(color = "orange") + 
-  theme_minimal() + 
-  labs(x = "years", y = "service user counts") +  
+data |> ggplot(aes(x = year, y = service_user_count)) +
+  geom_col(color = "orange") +
+  theme_minimal() +
+  labs(x = "years", y = "service user counts") +
   scale_y_continuous(labels = scales::comma)
 ```
 
@@ -217,19 +239,21 @@ avg_rate <- data %>%
   )
 
 # Reshape the data to long format for plotting with side-by-side bars
-df_long <- tidyr::pivot_longer(avg_rate, cols = c("avg_rate_bed", "avg_rate_room"),
-                               names_to = "type",
-                               values_to = "average")
+df_long <- tidyr::pivot_longer(avg_rate,
+  cols = c("avg_rate_bed", "avg_rate_room"),
+  names_to = "type",
+  values_to = "average"
+)
 
 # Plot using ggplot2
 ggplot(df_long, aes(x = factor(year), y = average, fill = type)) +
-  geom_bar(stat = "identity", position = position_dodge(width = 0.9)) + 
+  geom_bar(stat = "identity", position = position_dodge(width = 0.9)) +
   labs(x = "Year", y = "Average Occupancy Rate", fill = "Type") +
-  theme_minimal() + 
-  geom_text(aes(label = round(average, 1)), 
-            position = position_dodge(width = 0.9), 
-            vjust = -0.5, size = 3.5)
-
+  theme_minimal() +
+  geom_text(aes(label = round(average, 1)),
+    position = position_dodge(width = 0.9),
+    vjust = -0.5, size = 3.5
+  )
 ```
 
 @fig-rate-mean illustrates the trend in the average occupancy rates of beds and rooms from 2021 to 2024. Both categories exhibit an upward trend, although the increase in the occupancy rates of beds and rooms from year to year is quite modest. Overall, the average occupancy rate for rooms consistently surpasses that of beds each year. In 2024, the average room occupancy rate reached 99.5%, indicating nearly full occupancy of shelter rooms, while the average bed occupancy rate achieved 98.3%, slightly lower than the average room occupancy rate.
@@ -251,16 +275,17 @@ total_cap <- data %>%
   )
 
 # Reshape the data to long format for plotting with side-by-side bars
-df_long <- tidyr::pivot_longer(total_cap, cols = c("total_cap_bed", "total_cap_room"),
-                               names_to = "type",
-                               values_to = "total")
+df_long <- tidyr::pivot_longer(total_cap,
+  cols = c("total_cap_bed", "total_cap_room"),
+  names_to = "type",
+  values_to = "total"
+)
 
 # Plot using ggplot2
 ggplot(df_long, aes(x = factor(year), y = total, fill = type)) +
-  geom_bar(stat = "identity", position = position_dodge(width = 0.9)) + 
+  geom_bar(stat = "identity", position = position_dodge(width = 0.9)) +
   labs(x = "Year", y = "Total Actual Capacity", fill = "Type") +
   theme_minimal()
-
 ```
 
 @fig-total-cap illustrates the total actual capacity of beds and rooms from 2021 to 2024, allowing for a comparison of the capacities across two categories. Notably, as shown in @fig-rate-mean, rooms consistently exhibit a higher occupancy rate than beds over all four years. The plots indicate that the total actual capacity of rooms was only greater than that of beds in 2021 and 2022; however, in 2023 and 2024, the capacity of beds surpassed that of rooms significantly and raised to 1457984. Additionally, the total actual capacity of beds demonstrated an increasing trend from 2021 to 2023, followed by a decline to 1232028 in 2024. Conversely, the total actual capacity of rooms exhibited an upward trend from 2021 to 2022 which has its highest point at 1211399 of total actual capacity, after which it began to decrease until reaching its lowest point, 777790 in 2024.
